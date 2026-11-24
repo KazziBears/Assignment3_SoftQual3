@@ -1,0 +1,74 @@
+name: SonarQube C++ Analysis
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+jobs:
+  build-and-analyze:
+    name: Build, Test, and Analyze
+    runs-on: windows-latest
+
+    env:
+      BUILD_WRAPPER_OUT_DIR: bw-output
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Visual Studio Environment Config
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Install Build Wrapper
+        uses: SonarSource/sonarqube-scan-action/install-build-wrapper@v5.0.0
+
+      - name: Build Project
+        shell: cmd
+        run: >
+          build-wrapper-win-x86-64.exe
+          --out-dir bw-output
+          msbuild StudentRecordManagement.sln
+          /t:Rebuild
+          /p:Configuration=Release
+          /p:Platform=x64
+          /nodeReuse:False
+
+      - name: Run C++ Unit Tests
+        shell: powershell
+        run: |
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+
+          $vstest = & $vswhere -latest -products '*' -find '**\vstest.console.exe' |
+            Select-Object -First 1
+
+          if (-not $vstest) {
+            throw "Could not locate vstest.console.exe"
+          }
+
+          $testDll = Get-ChildItem -Path . -Recurse `
+            -Filter "StudentRecordTests.dll" |
+            Select-Object -First 1
+
+          if (-not $testDll) {
+            throw "StudentRecordTests.dll was not found. Check the test project build."
+          }
+
+          & $vstest $testDll.FullName
+
+          if ($LASTEXITCODE -ne 0) {
+            throw "One or more unit tests failed."
+          }
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5.0.0
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.cfamily.compile-commands=bw-output/compile_commands.json
