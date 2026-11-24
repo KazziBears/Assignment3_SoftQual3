@@ -1,0 +1,12 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\justi\\source\\repos\\studentrecordmanagement\\studentrecordtests\\pch.cpp",
+        "ProvidedModule": "",
+        "Includes": [
+            "c:\\users\\justi\\source\\repos\\studentrecordmanagement\\studentrecordtests\\pch.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
