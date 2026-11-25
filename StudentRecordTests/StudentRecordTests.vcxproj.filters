@@ -15,22 +15,14 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="StudentRecordTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\StudentRecordManagement\StudentRecordManagement\StudentRecordTests\StudentRecordTests.cpp">
+    <ClCompile Include="..\StudentRecordManagement\StudentManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\StudentRecordManagement\StudentRecordManagement\StudentRecordManagement\StudentManager.cpp">
+    <ClCompile Include="..\StudentRecordManagement\StudentRecord.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\StudentRecordManagement\StudentRecordManagement\StudentRecordManagement\StudentRecord.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

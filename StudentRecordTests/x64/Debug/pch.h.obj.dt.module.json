@@ -6,8 +6,7 @@
             "primary-output": "x64\\Debug\\pch.obj",
             "outputs": [
                 "x64\\Debug\\pch.h.obj.dt.module.json",
-                "x64\\Debug\\pch.h.obj.dt.d.json",
-                "x64\\Debug\\StudentRecordTests.pch"
+                "x64\\Debug\\pch.h.obj.dt.d.json"
             ],
             "requires": []
         }

@@ -15,21 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Downloads\StudentRecordManagement\StudentRecordManagement\StudentRecordManagement\StudentManager.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\StudentRecordManagement\StudentRecordManagement\StudentRecordManagement\StudentRecord.cpp">
+    <ClCompile Include="StudentManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\StudentRecordManagement\StudentRecordManagement\StudentRecordManagement\main.cpp">
+    <ClCompile Include="StudentRecord.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Downloads\StudentRecordManagement\StudentRecordManagement\StudentRecordManagement\StudentManager.h">
+    <ClInclude Include="StudentManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\StudentRecordManagement\StudentRecordManagement\StudentRecordManagement\StudentRecord.h">
+    <ClInclude Include="StudentRecord.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

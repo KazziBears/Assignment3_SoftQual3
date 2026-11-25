@@ -1,10 +1,10 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "c:\\users\\justi\\downloads\\studentrecordmanagement\\studentrecordmanagement\\studentrecordmanagement\\studentmanager.h",
+        "Source": "c:\\users\\justi\\source\\repos\\studentrecordmanagement\\studentrecordmanagement\\studentmanager.h",
         "ProvidedModule": "",
         "Includes": [
-            "c:\\users\\justi\\downloads\\studentrecordmanagement\\studentrecordmanagement\\studentrecordmanagement\\studentrecord.h",
+            "c:\\users\\justi\\source\\repos\\studentrecordmanagement\\studentrecordmanagement\\studentrecord.h",
             "c:\\program files\\microsoft visual studio\\18\\community\\vc\\tools\\msvc\\14.51.36231\\include\\string",
             "c:\\program files\\microsoft visual studio\\18\\community\\vc\\tools\\msvc\\14.51.36231\\include\\yvals_core.h",
             "c:\\program files\\microsoft visual studio\\18\\community\\vc\\tools\\msvc\\14.51.36231\\include\\vcruntime.h",

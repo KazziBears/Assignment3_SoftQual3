@@ -1,7 +1,3 @@
-﻿  pch.cpp
-  StudentManager.cpp
-  StudentRecord.cpp
-  StudentRecordTests.cpp
-  Generating Code...
+﻿  StudentRecord.cpp
      Creating library C:\Users\justi\source\repos\StudentRecordManagement\x64\Debug\StudentRecordTests.lib and object C:\Users\justi\source\repos\StudentRecordManagement\x64\Debug\StudentRecordTests.exp
   StudentRecordTests.vcxproj -> C:\Users\justi\source\repos\StudentRecordManagement\x64\Debug\StudentRecordTests.dll
