@@ -23,10 +23,10 @@ jobs:
           fetch-depth: 0
 
       - name: Visual Studio Environment Config
-        uses: microsoft/setup-msbuild@v2
+        uses: microsoft/setup-msbuild@4a0e9d13ed7d0ec288b80fede6bd0a1412fdbd1c
 
       - name: Install Build Wrapper
-        uses: SonarSource/sonarqube-scan-action/install-build-wrapper@v8.3.0
+        uses: SonarSource/sonarqube-scan-action/install-build-wrapper@4a0e9d13ed7d0ec288b80fede6bd0a1412fdbd1c
 
       - name: Build Project
         shell: powershell
@@ -80,7 +80,7 @@ jobs:
             throw "One or more C++ unit tests failed."
           }
       - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v8.3.0
+        uses: SonarSource/sonarqube-scan-action@4a0e9d13ed7d0ec288b80fede6bd0a1412fdbd1c
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
