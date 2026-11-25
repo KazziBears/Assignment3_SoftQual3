@@ -26,19 +26,32 @@ jobs:
         uses: microsoft/setup-msbuild@v2
 
       - name: Install Build Wrapper
-        uses: SonarSource/sonarqube-scan-action/install-build-wrapper@v5.0.0
+        uses: SonarSource/sonarqube-scan-action/install-build-wrapper@v8.3.0
 
       - name: Build Project
-        shell: cmd
-        run: >
-          build-wrapper-win-x86-64.exe
-          --out-dir bw-output
-          msbuild StudentRecordManagement.slnx
-          /t:Rebuild
-          /p:Configuration=Release
-          /p:Platform=x64
-          /nodeReuse:False
+        shell: powershell
+        run: |
+          $solution = Get-ChildItem -Path . -Recurse -Filter "*.slnx" |
+            Select-Object -First 1
 
+          if (-not $solution) {
+            throw "No Visual Studio solution (.slnx) found. Upload your solution to GitHub."
+          }
+
+          Write-Host "Building solution: $($solution.FullName)"
+
+          build-wrapper-win-x86-64.exe `
+            --out-dir bw-output `
+            msbuild $solution.FullName `
+            /t:Rebuild `
+            /p:Configuration=Release `
+            /p:Platform=x64 `
+            /nodeReuse:False
+
+          if ($LASTEXITCODE -ne 0) {
+            throw "C++ solution build failed."
+          }
+        
       - name: Run C++ Unit Tests
         shell: powershell
         run: |
@@ -48,7 +61,7 @@ jobs:
             Select-Object -First 1
 
           if (-not $vstest) {
-            throw "Could not locate vstest.console.exe"
+            throw "Visual Studio Test Console was not found."
           }
 
           $testDll = Get-ChildItem -Path . -Recurse `
@@ -56,19 +69,20 @@ jobs:
             Select-Object -First 1
 
           if (-not $testDll) {
-            throw "StudentRecordTests.dll was not found. Check the test project build."
+            throw "StudentRecordTests.dll was not found. Check your test project."
           }
+
+          Write-Host "Running tests: $($testDll.FullName)"
 
           & $vstest $testDll.FullName
 
           if ($LASTEXITCODE -ne 0) {
-            throw "One or more unit tests failed."
+            throw "One or more C++ unit tests failed."
           }
-
       - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5.0.0
+        uses: SonarSource/sonarqube-scan-action@v8.3.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.cfamily.compile-commands=bw-output/compile_commands.json
+            -Dsonar.cfamily.build-wrapper-output=bw-output
