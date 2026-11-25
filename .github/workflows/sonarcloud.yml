@@ -33,7 +33,7 @@ jobs:
         run: >
           build-wrapper-win-x86-64.exe
           --out-dir bw-output
-          msbuild StudentRecordManagement.sln
+          msbuild StudentRecordManagement.slnx
           /t:Rebuild
           /p:Configuration=Release
           /p:Platform=x64
